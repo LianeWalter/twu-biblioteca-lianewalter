@@ -9,9 +9,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.containsString;
 
 
 public class Interface {
@@ -26,9 +25,7 @@ public class Interface {
         System.setOut(new PrintStream(outContent));
         bibliotecaApp = new BibliotecaApp();
         books = new ArrayList<>();
-
-        books.add(new Book("Kafka on the Shore"));
-
+        books.add(new Book("Kafka on the Shore", "Haruki Murakami", "2005"));
     }
 
     @Test
@@ -41,7 +38,11 @@ public class Interface {
 
     @Test
     public void showBooks(){
-        assertThat(outContent.toString(), containsString(books.get(0).getTitle()));
+        bibliotecaApp.main(null);
+
+        assertThat(outContent.toString(), allOf(containsString(books.get(0).getTitle()),containsString(books.get(0).getYear()), containsString(books.get(0).getAuthor())));
+
+
 
     }
 }

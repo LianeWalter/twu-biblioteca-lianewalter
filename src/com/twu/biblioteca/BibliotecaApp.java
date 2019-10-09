@@ -1,8 +1,37 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BibliotecaApp {
 
+
+    private static String welcomeMessage;
+    private static List<Book> books;
+
+    private static void init(){
+        welcomeMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore! \n";
+        books = new ArrayList<>();
+        books.add(new Book("Kafka on the Shore", "Haruki Murakami", "2005"));
+        books.add(new Book("Norwegian Wood", "Haruki Murakami", "1989"));
+        books.add(new Book("Buddenbrooks", "Thomas Mann", "1901"));
+    }
+
+
+
+    private static void showWelcomeMessage(){
+        System.out.println(welcomeMessage);
+    }
+
+    private static void showBookList(){
+        System.out.println("List of books: ");
+        books.forEach(System.out::println);
+
+    }
+
     public static void main(String[] args) {
-        System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
+        init();
+        showWelcomeMessage();
+        showBookList();
     }
 }
