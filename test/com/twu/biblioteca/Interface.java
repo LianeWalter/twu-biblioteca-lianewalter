@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.font.TextLayout;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -30,7 +31,8 @@ public class Interface {
 
     @Test
     public void welcomeMessage(){
-
+        String input  = "l";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         bibliotecaApp.main(null);
 
         assertThat(outContent.toString(), containsString("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!"));
@@ -38,11 +40,13 @@ public class Interface {
 
     @Test
     public void showBooks(){
-        bibliotecaApp.main(null);
+        String input  = "l";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
 
+        bibliotecaApp.main(null);
         assertThat(outContent.toString(), allOf(containsString(books.get(0).getTitle()),containsString(books.get(0).getYear()), containsString(books.get(0).getAuthor())));
 
-
-
     }
+
+
 }
