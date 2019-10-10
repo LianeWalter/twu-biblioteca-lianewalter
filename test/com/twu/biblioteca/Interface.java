@@ -47,6 +47,26 @@ public class Interface {
         assertThat(outContent.toString(), allOf(containsString(books.get(0).getTitle()),containsString(books.get(0).getYear()), containsString(books.get(0).getAuthor())));
 
     }
+    @Test
+    public void mainMenu(){
+        String input  = "l";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        bibliotecaApp.main(null);
+        assertThat(outContent.toString(), containsString("Main Menu"));
+
+    }
+
+
+    @Test
+    public void invalidInput(){
+        String input  = "z";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        bibliotecaApp.main(null);
+        assertThat(outContent.toString(), containsString("Please select a valid option!"));
+
+    }
 
 
 }

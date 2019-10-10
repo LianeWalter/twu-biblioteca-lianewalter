@@ -52,11 +52,19 @@ public class BibliotecaApp {
         options.forEach(System.out::println);
     }
 
+    public static void showErrorMessage(){
+        System.out.println("Please select a valid option! \n");
+        showOptions();
+    }
+
 
     public static void selectOption(String option){
         switch (option) {
             case "l" :
                 showBookList();
+            default :
+                showErrorMessage();
+
         }
     }
 
