@@ -36,8 +36,8 @@ public class BookController {
     }
 
 
-    public void returnBook(String title) {
-        Book bookToReturn = books.stream().filter(book -> book.getTitle().equals(title) && book.isCheckedOut()).findFirst().get();
+    public void returnBook(String title) throws NotAValidBookReturnException {
+        Book bookToReturn = books.stream().filter(book -> book.getTitle().equals(title) && book.isCheckedOut()).findFirst().orElseThrow(NotAValidBookReturnException::new);
         bookToReturn.setCheckedOut(false);
     }
 
