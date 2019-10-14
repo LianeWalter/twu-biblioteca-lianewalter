@@ -1,7 +1,8 @@
 package com.twu.biblioteca;
 
 
-import com.twu.biblioteca.ui.UserInterface;
+import com.twu.biblioteca.book.Book;
+import com.twu.biblioteca.book.BookController;
 import org.junit.Before;
 import org.junit.Test;
 
