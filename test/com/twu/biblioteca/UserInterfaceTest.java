@@ -35,7 +35,7 @@ public class UserInterfaceTest {
     public void shouldShowMainMenu(){
         String input = "q";
         Scanner scanner = new Scanner(input);
-        UserInterface userInterface = new UserInterface(new BookController(), , scanner);
+        UserInterface userInterface = new UserInterface(null,null , scanner);
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -54,7 +54,7 @@ public class UserInterfaceTest {
     public void shouldSignalizeInvalidInput(){
         String input = "x q";
         Scanner scanner = new Scanner(input);
-        UserInterface userInterface = new UserInterface(new BookController(), , scanner);
+        UserInterface userInterface = new UserInterface(new BookController(), null , scanner);
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -69,7 +69,7 @@ public class UserInterfaceTest {
     public void shouldShowBookCheckoutSuccessMessage() {
         String input = "c\nKafka on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new BookController(), , scanner);
+        UserInterface userInterface = new UserInterface(new BookController(), null , scanner);
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -84,7 +84,7 @@ public class UserInterfaceTest {
     public void shouldShowBookCheckoutFailureMessageForAlreadyCheckedOutBook() {
         String input = "c\nKafka on the Shore\nc\nKafka on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new BookController(), , scanner);
+        UserInterface userInterface = new UserInterface(new BookController(), null, scanner);
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -100,7 +100,7 @@ public class UserInterfaceTest {
     public void shouldShowBookCheckoutFailureMessageForMisspellingTitle() {
         String input = "c\nKafker on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new BookController(), , scanner);
+        UserInterface userInterface = new UserInterface(new BookController(), null, scanner);
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -116,7 +116,7 @@ public class UserInterfaceTest {
     public void shouldReturnBookSuccessfully() {
         String input = "c\nKafka on the Shore\nr\nKafka on the Shore\nl\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new BookController(), , scanner);
+        UserInterface userInterface = new UserInterface(new BookController(), null, scanner);
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -132,7 +132,7 @@ public class UserInterfaceTest {
     public void shouldShowBookReturnFailureMessageForUnknownBook() {
         String input = "r\nWinnie-the-Pooh\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new BookController(), , scanner);
+        UserInterface userInterface = new UserInterface(new BookController(), null, scanner);
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -148,7 +148,7 @@ public class UserInterfaceTest {
     public void shouldShowBookReturnFailureMessageForMisspellingTitle() {
         String input = "c\nKafka on the Shore\nr\nKafker on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new BookController(), , scanner);
+        UserInterface userInterface = new UserInterface(new BookController(), null , scanner);
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -164,7 +164,7 @@ public class UserInterfaceTest {
     public void shouldNavigateToMovieListSuccessfully(){
         String input = "m\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new BookController(), new MovieController(), scanner);
+        UserInterface userInterface = new UserInterface(null, new MovieController(), scanner);
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -182,7 +182,7 @@ public class UserInterfaceTest {
     public void shouldExitApplicationCorrectly(){
             String input = "q";
             Scanner scanner = new Scanner(input);
-            UserInterface userInterface = new UserInterface(new BookController(), , scanner);
+            UserInterface userInterface = new UserInterface(null, null , scanner);
 
             exit.expectSystemExit();
             exit.checkAssertionAfterwards(() ->
