@@ -1,16 +1,20 @@
 package com.twu.biblioteca;
 
-public class Book {
+public class Book{
 
     private String title;
     private String author;
     private String year;
+
+    private boolean isCheckedOut;
 
 
     public Book(String title, String author, String year) {
         this.title = title;
         this.author = author;
         this.year = year;
+
+        this.isCheckedOut = false;
     }
 
     public String getTitle() {
@@ -38,6 +42,15 @@ public class Book {
         this.year = year;
     }
 
+
+    public boolean isCheckedOut() {
+        return isCheckedOut;
+    }
+
+    public void setCheckedOut(boolean checkedOut) {
+        isCheckedOut = checkedOut;
+    }
+
     @Override
     public String toString() {
 
@@ -48,4 +61,6 @@ public class Book {
                 this.year;
         return bookDescription;
     }
+
+
 }

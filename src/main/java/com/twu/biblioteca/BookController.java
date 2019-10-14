@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookController {
 
@@ -20,9 +21,23 @@ public class BookController {
 
     public void showBookList(){
         System.out.println("List of books: ");
-        books.forEach(System.out::println);
+       List<Book> availableBooks = books.stream().filter(book -> !book.isCheckedOut()).collect(Collectors.toList());
+
+       availableBooks.forEach(System.out::println);
+    }
+
+
+    public void checkOutBook(String title){
+
+        Book bookToCheckOut = books.stream().filter(book -> book.getTitle().equals(title)).findFirst().get();
+
+        bookToCheckOut.setCheckedOut(true);
+
+
+
 
     }
+
 
 }
 
