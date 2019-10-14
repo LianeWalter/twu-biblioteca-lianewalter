@@ -111,6 +111,22 @@ public class UserInterfaceTest {
 
     }
 
+    @Test
+    public void shouldReturnBookSuccessfully() {
+        String input = "c\nKafka on the Shore\nr\nKafka on the Shore\nl\nq\n";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
+        UserInterface userInterface = new UserInterface(new BookController(), scanner);
+
+        exit.expectSystemExit();
+        exit.checkAssertionAfterwards(() ->
+                assertThat(outContent.toString(), containsString("Kafka on the Shore"))
+        );
+
+
+        userInterface.run();
+
+    }
+
 
 
     @Test
