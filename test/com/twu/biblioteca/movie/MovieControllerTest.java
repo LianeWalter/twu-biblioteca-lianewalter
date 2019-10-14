@@ -12,6 +12,8 @@ import static org.junit.Assert.*;
 
 public class MovieControllerTest {
     private ByteArrayOutputStream outContent;
+    private MovieController movieController;
+
 
 
 
@@ -20,11 +22,13 @@ public class MovieControllerTest {
     public void setUp() throws Exception {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
+        movieController = new MovieController();
     }
+
 
     @Test
     public void shouldShowMovieList(){
-
+        movieController.showMovieList();
         assertThat(outContent.toString(), containsString("Frozen"));
     }
 

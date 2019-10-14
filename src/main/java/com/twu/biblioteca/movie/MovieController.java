@@ -14,4 +14,11 @@ public class MovieController {
         this.movies.add(new Movie("Tangled", "2010", "Nathan Greno, Byron Howard", "7" ));
         this.movies.add(new Movie("Moana", "2016","Ron Clements, John Musker", "unrated"));
     }
+
+    public void showMovieList(){
+
+        this.movies.forEach(System.out::println);
+    }
+
+
 }
