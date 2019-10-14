@@ -46,8 +46,5 @@ public class BookControllerTest {
         bookController.checkOutBook("Kafka on the Shore");
         bookController.showBookList();
         assertThat(outContent.toString(),not((containsString(mockBooks.get(0).getTitle()))));
-        assertThat(outContent.toString(),containsString("Thank you! Enjoy the book"));
-
-
     }
 }

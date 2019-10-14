@@ -63,6 +63,23 @@ public class UserInterfaceTest {
 
     }
 
+    @Test
+    public void shouldShowBookCheckoutSuccessMessage() {
+        String input = "c\nKafka on the Shore\nq\n";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
+        UserInterface userInterface = new UserInterface(new BookController(), scanner);
+
+        exit.expectSystemExit();
+        exit.checkAssertionAfterwards(() ->
+                assertThat(outContent.toString(), containsString("Thank you! Enjoy the book\n"))
+        );
+
+
+        userInterface.run();
+
+    }
+
+
 
     @Test
     public void shouldExitApplicationCorrectly(){

@@ -90,5 +90,7 @@ public class UserInterface {
         String input = scanner.next();
 
         bookController.checkOutBook(input);
+        System.out.println("Thank you! Enjoy the book\n");
+
     }
 }
