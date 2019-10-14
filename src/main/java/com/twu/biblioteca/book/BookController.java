@@ -33,8 +33,12 @@ public class BookController {
 
         bookToCheckOut.setCheckedOut(true);
 
+    }
 
 
+    public void returnBook(String title) {
+        Book bookToReturn = books.stream().filter(book -> book.getTitle().equals(title) && book.isCheckedOut()).findFirst().get();
+        bookToReturn.setCheckedOut(false);
     }
 
 
