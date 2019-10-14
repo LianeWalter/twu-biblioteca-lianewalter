@@ -22,6 +22,7 @@ public class UserInterface {
         this.scanner = scanner;
         options = new ArrayList<>();
         options.add(new Option("List of books", "l"));
+        options.add(new Option("Check out a book", "c"));
         options.add(new Option("Quit the application", "q"));
 
         this.bookController = bookController;
@@ -35,6 +36,9 @@ public class UserInterface {
                 break;
             case "q" :
                 quitApplication();
+                break;
+            case "c":
+                checkoutBook();
                 break;
             default :
                 showErrorMessage();
@@ -81,6 +85,10 @@ public class UserInterface {
 
     }
 
-    public void checkoutBook(String title) {
+    public void checkoutBook() {
+        System.out.println("What is the title of the book you want to check out?");
+        String input = scanner.next();
+
+        bookController.checkOutBook(input);
     }
 }

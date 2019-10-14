@@ -19,7 +19,7 @@ public class BibliotecaApp {
         welcomeMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore! \n";
         BookController bookController = new BookController();
 
-        userInterface = new UserInterface(bookController, new Scanner(System.in));
+        userInterface = new UserInterface(bookController, new Scanner(System.in).useDelimiter("\n"));
 
 
 
