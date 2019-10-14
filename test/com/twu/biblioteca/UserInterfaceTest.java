@@ -119,7 +119,7 @@ public class UserInterfaceTest {
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
-                assertThat(outContent.toString(), containsString("Kafka on the Shore"))
+                assertThat(outContent.toString(), allOf(containsString("Thank you for returning the book"), containsString("Kafka on the Shore")))
         );
 
 
