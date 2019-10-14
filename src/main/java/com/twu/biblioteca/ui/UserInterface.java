@@ -106,7 +106,7 @@ public class UserInterface {
     public void returnBook(){
         System.out.println("What is the title of the book you want to return?");
         String input = scanner.next();
-
         bookController.returnBook(input);
+        System.out.println("Thank you for returning the book");
     }
 }
