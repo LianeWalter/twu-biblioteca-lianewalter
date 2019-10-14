@@ -79,9 +79,24 @@ public class UserInterfaceTest {
         userInterface.run();
 
     }
+    @Test
+    public void shouldShowBookCheckoutFailureMessageForAlreadyCheckedOutBook() {
+        String input = "c\nKafka on the Shore\nc\nKafka on the Shore\nq\n";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
+        UserInterface userInterface = new UserInterface(new BookController(), scanner);
+
+        exit.expectSystemExit();
+        exit.checkAssertionAfterwards(() ->
+                assertThat(outContent.toString(), containsString("This book is currently not available or does not exist. (Maybe you misspelled the title?) \n"))
+        );
+
+
+        userInterface.run();
+
+    }
 
     @Test
-    public void shouldShowBookCheckoutFailureMessage() {
+    public void shouldShowBookCheckoutFailureMessageForMisspellingTitle() {
         String input = "c\nKafker on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
         UserInterface userInterface = new UserInterface(new BookController(), scanner);

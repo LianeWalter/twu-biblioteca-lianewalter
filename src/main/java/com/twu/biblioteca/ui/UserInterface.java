@@ -2,6 +2,7 @@ package com.twu.biblioteca.ui;
 
 import com.twu.biblioteca.book.BookController;
 import com.twu.biblioteca.Option;
+import com.twu.biblioteca.book.NoSuchBookAvailableException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,8 +90,13 @@ public class UserInterface {
         System.out.println("What is the title of the book you want to check out?");
         String input = scanner.next();
 
-        bookController.checkOutBook(input);
-        System.out.println("Thank you! Enjoy the book\n");
+        try {
+            bookController.checkOutBook(input);
+            System.out.println("Thank you! Enjoy the book\n");
+        } catch (NoSuchBookAvailableException e) {
+            System.out.println("This book is currently not available or does not exist. (Maybe you misspelled the title?) \n");
+        }
+
 
     }
 }
