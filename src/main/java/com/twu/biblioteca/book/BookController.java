@@ -27,9 +27,9 @@ public class BookController {
     }
 
 
-    public void checkOutBook(String title){
+    public void checkOutBook(String title) throws NoSuchBookAvailableException {
 
-        Book bookToCheckOut = books.stream().filter(book -> book.getTitle().equals(title)).findFirst().get();
+        Book bookToCheckOut = books.stream().filter(book -> book.getTitle().equals(title) && !book.isCheckedOut()).findFirst().orElseThrow(NoSuchBookAvailableException::new);
 
         bookToCheckOut.setCheckedOut(true);
 

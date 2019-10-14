@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.book.Book;
 import com.twu.biblioteca.book.BookController;
+import com.twu.biblioteca.book.NoSuchBookAvailableException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,7 +45,11 @@ public class BookControllerTest {
     @Test
     public void shouldCheckOutBookCorrectly() {
         BookController bookController = new BookController();
-        bookController.checkOutBook("Kafka on the Shore");
+        try {
+            bookController.checkOutBook("Kafka on the Shore");
+        } catch (NoSuchBookAvailableException e) {
+            e.printStackTrace();
+        }
         bookController.showBookList();
         assertThat(outContent.toString(),not((containsString(mockBooks.get(0).getTitle()))));
     }
