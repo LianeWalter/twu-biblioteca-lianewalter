@@ -36,7 +36,7 @@ public class UserInterfaceTest {
 
 
     @Test
-    public void showBooks(){
+    public void shouldShowBookList(){
         String input = "l q";
         Scanner scanner = new Scanner(input);
 
@@ -50,7 +50,7 @@ public class UserInterfaceTest {
         userInterface.run();
     }
     @Test
-    public void mainMenu(){
+    public void shouldShowMainMenu(){
         String input = "q";
         Scanner scanner = new Scanner(input);
         UserInterface userInterface = new UserInterface(new BookController(), scanner);
@@ -69,7 +69,7 @@ public class UserInterfaceTest {
 
 
     @Test
-    public void invalidInput(){
+    public void shouldSignalizeInvalidInput(){
         String input = "x q";
         Scanner scanner = new Scanner(input);
         UserInterface userInterface = new UserInterface(new BookController(), scanner);
@@ -85,7 +85,7 @@ public class UserInterfaceTest {
 
 
     @Test
-    public void exitApplication(){
+    public void shouldExitApplicationCorrectly(){
             String input = "q";
             Scanner scanner = new Scanner(input);
             UserInterface userInterface = new UserInterface(new BookController(), scanner);
