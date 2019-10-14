@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 
 import com.twu.biblioteca.book.BookController;
+import com.twu.biblioteca.movie.MovieController;
 import com.twu.biblioteca.ui.UserInterface;
 
 import java.util.Scanner;
@@ -17,8 +18,9 @@ public class BibliotecaApp {
     public static void init(){
         welcomeMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore! \n";
         BookController bookController = new BookController();
+        MovieController movieController = new MovieController();
 
-        userInterface = new UserInterface(bookController, , new Scanner(System.in).useDelimiter("\n"));
+        userInterface = new UserInterface(bookController, movieController, new Scanner(System.in).useDelimiter("\n"));
 
 
 
