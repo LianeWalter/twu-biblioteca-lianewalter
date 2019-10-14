@@ -24,6 +24,7 @@ public class UserInterface {
         options = new ArrayList<>();
         options.add(new Option("List of books", "l"));
         options.add(new Option("Check out a book", "c"));
+        options.add(new Option("Return a book", "r"));
         options.add(new Option("Quit the application", "q"));
 
         this.bookController = bookController;
@@ -40,6 +41,9 @@ public class UserInterface {
                 break;
             case "c":
                 checkoutBook();
+                break;
+            case "r":
+                returnBook();
                 break;
             default :
                 showErrorMessage();
@@ -97,6 +101,12 @@ public class UserInterface {
             System.out.println("This book is currently not available or does not exist. (Maybe you misspelled the title?) \n");
         }
 
+    }
 
+    public void returnBook(){
+        System.out.println("What is the title of the book you want to return?");
+        String input = scanner.next();
+
+        bookController.returnBook(input);
     }
 }
