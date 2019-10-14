@@ -3,6 +3,7 @@ package com.twu.biblioteca.ui;
 import com.twu.biblioteca.book.BookController;
 import com.twu.biblioteca.Option;
 import com.twu.biblioteca.book.NoSuchBookAvailableException;
+import com.twu.biblioteca.book.NotAValidBookReturnException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,7 +107,12 @@ public class UserInterface {
     public void returnBook(){
         System.out.println("What is the title of the book you want to return?");
         String input = scanner.next();
-        bookController.returnBook(input);
-        System.out.println("Thank you for returning the book");
+        try {
+            bookController.returnBook(input);
+            System.out.println("Thank you for returning the book");
+        } catch (NotAValidBookReturnException e) {
+            System.out.println("That is not a valid book to return.");
+        }
+
     }
 }
