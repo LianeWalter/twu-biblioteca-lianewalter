@@ -6,12 +6,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -23,32 +19,16 @@ public class UserInterfaceTest {
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     private ByteArrayOutputStream outContent;
-    List<Book> mockBooks;
 
     @Before
     public void init(){
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        mockBooks = new ArrayList<>();
-        mockBooks.add(new Book("Kafka on the Shore", "Haruki Murakami", "2005"));
+
     }
 
 
 
-    @Test
-    public void shouldShowBookList(){
-        String input = "l q";
-        Scanner scanner = new Scanner(input);
-
-        UserInterface userInterface = new UserInterface(new BookController(), scanner);
-
-
-        exit.expectSystemExit();
-        exit.checkAssertionAfterwards(() -> {
-            assertThat(outContent.toString(), allOf(containsString(mockBooks.get(0).getTitle()),containsString(mockBooks.get(0).getYear()), containsString(mockBooks.get(0).getAuthor())));
-        });
-        userInterface.run();
-    }
     @Test
     public void shouldShowMainMenu(){
         String input = "q";
@@ -100,14 +80,6 @@ public class UserInterfaceTest {
     }
 
 
-    @Test
-    public void shouldCheckOutABookCorrectly(){
-        UserInterface userInterface = new UserInterface(new BookController(), null);
-        userInterface.checkoutBook(mockBooks.get(0).getTitle());
-        assertThat(outContent.toString(),not(anyOf(containsString(mockBooks.get(0).getTitle()),containsString(mockBooks.get(0).getYear()), containsString(mockBooks.get(0).getAuthor()))));
-
-
-    }
 
 
 
