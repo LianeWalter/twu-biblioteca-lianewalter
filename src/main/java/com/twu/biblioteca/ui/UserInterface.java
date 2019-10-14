@@ -17,6 +17,7 @@ public class UserInterface {
     private boolean programRunning;
 
     private BookController bookController;
+    private MovieController movieController;
 
 
 
@@ -27,9 +28,11 @@ public class UserInterface {
         options.add(new Option("List of books", "l"));
         options.add(new Option("Check out a book", "c"));
         options.add(new Option("Return a book", "r"));
+        options.add(new Option("List of movies", "m"));
         options.add(new Option("Quit the application", "q"));
 
         this.bookController = bookController;
+        this.movieController = movieController;
 
     }
 
@@ -46,6 +49,9 @@ public class UserInterface {
                 break;
             case "r":
                 returnBook();
+                break;
+            case "m":
+                movieController.showMovieList();
                 break;
             default :
                 showErrorMessage();
