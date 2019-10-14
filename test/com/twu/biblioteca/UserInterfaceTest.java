@@ -100,6 +100,16 @@ public class UserInterfaceTest {
     }
 
 
+    @Test
+    public void shouldCheckOutABookCorrectly(){
+        UserInterface userInterface = new UserInterface(new BookController(), null);
+        userInterface.checkoutBook(mockBooks.get(0).getTitle());
+        assertThat(outContent.toString(),not(anyOf(containsString(mockBooks.get(0).getTitle()),containsString(mockBooks.get(0).getYear()), containsString(mockBooks.get(0).getAuthor()))));
+
+
+    }
+
+
 
 
 

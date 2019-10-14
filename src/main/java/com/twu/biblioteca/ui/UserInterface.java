@@ -80,4 +80,7 @@ public class UserInterface {
         run();
 
     }
+
+    public void checkoutBook(String title) {
+    }
 }
