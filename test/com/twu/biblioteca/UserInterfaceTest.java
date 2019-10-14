@@ -127,6 +127,38 @@ public class UserInterfaceTest {
 
     }
 
+    @Test
+    public void shouldShowBookReturnFailureMessageForUnknownBook() {
+        String input = "r\nWinnie-the-Pooh\nq\n";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
+        UserInterface userInterface = new UserInterface(new BookController(), scanner);
+
+        exit.expectSystemExit();
+        exit.checkAssertionAfterwards(() ->
+                assertThat(outContent.toString(), containsString("That is not a valid book to return."))
+        );
+
+
+        userInterface.run();
+
+    }
+
+    @Test
+    public void shouldShowBookReturnFailureMessageForMisspellingTitle() {
+        String input = "c\nKafka on the Shore\nr\nKafker on the Shore\nq\n";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
+        UserInterface userInterface = new UserInterface(new BookController(), scanner);
+
+        exit.expectSystemExit();
+        exit.checkAssertionAfterwards(() ->
+                assertThat(outContent.toString(), containsString("That is not a valid book to return."))
+        );
+
+
+        userInterface.run();
+
+    }
+
 
 
     @Test
