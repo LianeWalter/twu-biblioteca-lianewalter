@@ -4,6 +4,7 @@ import com.twu.biblioteca.library.book.BookController;
 import com.twu.biblioteca.library.book.NoSuchBookAvailableException;
 import com.twu.biblioteca.library.book.NotAValidBookReturnException;
 import com.twu.biblioteca.library.movie.MovieController;
+import com.twu.biblioteca.user.UserController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class UserInterface {
 
 
 
-    public UserInterface(BookController bookController, MovieController movieController, Scanner scanner){
+    public UserInterface(UserController userController, BookController bookController, MovieController movieController, Scanner scanner){
         programRunning = true;
         this.scanner = scanner;
         options = new ArrayList<>();

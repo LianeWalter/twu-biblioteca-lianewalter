@@ -20,7 +20,7 @@ public class BibliotecaApp {
         BookController bookController = new BookController();
         MovieController movieController = new MovieController();
 
-        userInterface = new UserInterface(bookController, movieController, new Scanner(System.in).useDelimiter("\n"));
+        userInterface = new UserInterface(new UserController(), bookController, movieController, new Scanner(System.in).useDelimiter("\n"));
 
 
 
