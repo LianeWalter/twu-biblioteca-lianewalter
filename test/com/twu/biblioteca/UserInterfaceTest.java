@@ -90,7 +90,7 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldNotShowCheckOutOptionIfNotLoggedIn(){
-        String input = "c\nq\n";
+        String input = "q\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
         UserInterface userInterface = new UserInterface(new UserController(), new BookController(), new MovieController() , scanner);
 
@@ -106,6 +106,36 @@ public class UserInterfaceTest {
     @Test
     public void shouldNotAllowToCheckOutIfNotLoggedIn(){
         String input = "c\nq\n";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
+        UserInterface userInterface = new UserInterface(new UserController(), new BookController(), new MovieController() , scanner);
+
+        exit.expectSystemExit();
+        exit.checkAssertionAfterwards(() ->
+                assertThat(outContent.toString(), containsString("You must be logged in for this action."))
+
+        );
+
+
+        userInterface.run();
+    }
+    @Test
+    public void shouldNotShowReturnOptionIfNotLoggedIn(){
+        String input = "q\n";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
+        UserInterface userInterface = new UserInterface(new UserController(), new BookController(), new MovieController() , scanner);
+
+        exit.expectSystemExit();
+        exit.checkAssertionAfterwards(() -> {
+                    assertThat(outContent.toString(), not(containsString("Return an item")));
+                }
+        );
+
+
+        userInterface.run();
+    }
+    @Test
+    public void shouldNotAllowToReturnIfNotLoggedIn(){
+        String input = "r\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
         UserInterface userInterface = new UserInterface(new UserController(), new BookController(), new MovieController() , scanner);
 
