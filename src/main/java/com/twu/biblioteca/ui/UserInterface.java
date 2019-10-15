@@ -44,7 +44,7 @@ public class UserInterface {
                 quitApplication();
                 break;
             case "c":
-                checkoutBook();
+                checkoutItem();
                 break;
             case "r":
                 returnBook();
@@ -97,6 +97,19 @@ public class UserInterface {
 
     }
 
+    public void checkoutItem(){
+        System.out.println("Which item do you want to borrow? Press \"m\" for movies and \"b\" for books.");
+        String input = scanner.next();
+        switch(input){
+            case "m" :
+                checkoutMovie();
+                break;
+            case "b" :
+                checkoutBook();
+                break;
+        }
+    }
+
 
     public void checkoutBook() {
         System.out.println("What is the title of the book you want to check out?");
@@ -108,6 +121,11 @@ public class UserInterface {
         } catch (NoSuchBookAvailableException e) {
             System.out.println("This book is currently not available or does not exist. (Maybe you misspelled the title?) \n");
         }
+
+    }
+
+
+    public void checkoutMovie(){
 
     }
 

@@ -68,9 +68,9 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldShowCheckoutOptions(){
-        String input = "c\n";
+        String input = "c\nb\nKafka on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new BookController(), null , scanner);
+        UserInterface userInterface = new UserInterface(new BookController(), new MovieController() , scanner);
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
