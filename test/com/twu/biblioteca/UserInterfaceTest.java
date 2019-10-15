@@ -52,8 +52,8 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldSignalizeInvalidInput(){
-        String input = "x q";
-        Scanner scanner = new Scanner(input);
+        String input = "x\nq";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
         UserInterface userInterface = new UserInterface(new BookController(), null , scanner);
 
         exit.expectSystemExit();
@@ -65,9 +65,26 @@ public class UserInterfaceTest {
 
     }
 
+
+    @Test
+    public void shouldShowCheckoutOptions(){
+        String input = "c\n";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
+        UserInterface userInterface = new UserInterface(new BookController(), null , scanner);
+
+        exit.expectSystemExit();
+        exit.checkAssertionAfterwards(() ->
+                assertThat(outContent.toString(), containsString("Which item do you want to borrow? Press \"m\" for movies and \"b\" for books."))
+        );
+
+        userInterface.run();
+
+
+    }
+
     @Test
     public void shouldShowBookCheckoutSuccessMessage() {
-        String input = "c\nKafka on the Shore\nq\n";
+        String input = "c\nb\nKafka on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
         UserInterface userInterface = new UserInterface(new BookController(), null , scanner);
 
@@ -82,7 +99,7 @@ public class UserInterfaceTest {
     }
     @Test
     public void shouldShowBookCheckoutFailureMessageForAlreadyCheckedOutBook() {
-        String input = "c\nKafka on the Shore\nc\nKafka on the Shore\nq\n";
+        String input = "c\nb\nKafka on the Shore\nc\nb\nKafka on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
         UserInterface userInterface = new UserInterface(new BookController(), null, scanner);
 
@@ -98,7 +115,7 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldShowBookCheckoutFailureMessageForMisspellingTitle() {
-        String input = "c\nKafker on the Shore\nq\n";
+        String input = "c\nb\nKafker on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
         UserInterface userInterface = new UserInterface(new BookController(), null, scanner);
 
@@ -114,7 +131,7 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldReturnBookSuccessfully() {
-        String input = "c\nKafka on the Shore\nr\nKafka on the Shore\nl\nq\n";
+        String input = "c\nb\nKafka on the Shore\nr\nKafka on the Shore\nl\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
         UserInterface userInterface = new UserInterface(new BookController(), null, scanner);
 
@@ -146,7 +163,7 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldShowBookReturnFailureMessageForMisspellingTitle() {
-        String input = "c\nKafka on the Shore\nr\nKafker on the Shore\nq\n";
+        String input = "c\nb\nKafka on the Shore\nr\nKafker on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
         UserInterface userInterface = new UserInterface(new BookController(), null , scanner);
 
