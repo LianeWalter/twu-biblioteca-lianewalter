@@ -81,6 +81,21 @@ public class UserInterfaceTest {
 
 
     }
+    @Test
+    public void shouldShowMovieCheckoutSuccessMessage() {
+        String input = "c\nm\nFrozen\nq\n";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
+        UserInterface userInterface = new UserInterface(null, new MovieController() , scanner);
+
+        exit.expectSystemExit();
+        exit.checkAssertionAfterwards(() ->
+                assertThat(outContent.toString(), containsString("Thank you! Enjoy the movie\n"))
+        );
+
+
+        userInterface.run();
+
+    }
 
     @Test
     public void shouldShowBookCheckoutSuccessMessage() {
