@@ -1,5 +1,8 @@
 package com.twu.biblioteca.movie;
 
+import com.twu.biblioteca.book.Book;
+import com.twu.biblioteca.book.NoSuchBookAvailableException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,4 +24,11 @@ public class MovieController {
     }
 
 
+    public void checkOutMovie(String name) {
+
+        Movie movieToCheckOut = movies.stream().filter(movie -> movie.getName().equals(name) && !movie.isCheckedOut()).findFirst().get();
+
+        movieToCheckOut.setCheckedOut(true);
+
+    }
 }

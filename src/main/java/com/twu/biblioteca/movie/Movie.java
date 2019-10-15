@@ -9,12 +9,18 @@ public class Movie {
     private String director;
     private String rating;
 
+    private boolean isCheckedOut;
+
+
     public Movie(String name, String year, String director, String rating) {
         this.name = name;
         this.year = year;
         this.director = director;
         this.rating = rating;
+
+        this.isCheckedOut = false;
     }
+
 
     public String getName() {
         return name;
@@ -46,6 +52,15 @@ public class Movie {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+
+    public boolean isCheckedOut() {
+        return isCheckedOut;
+    }
+
+    public void setCheckedOut(boolean checkedOut) {
+        isCheckedOut = checkedOut;
     }
 
     @Override
