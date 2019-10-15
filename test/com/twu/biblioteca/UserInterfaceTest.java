@@ -178,6 +178,8 @@ public class UserInterfaceTest {
 
 
 
+
+
     @Test
     public void shouldExitApplicationCorrectly(){
             String input = "q";

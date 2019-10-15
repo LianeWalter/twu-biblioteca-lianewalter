@@ -50,4 +50,6 @@ public class MovieControllerTest {
        assertThat(outContent.toString(),not((containsString(mockMovies.get(0).getName()))));
     }
 
+
+
 }

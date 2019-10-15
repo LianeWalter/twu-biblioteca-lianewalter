@@ -1,7 +1,6 @@
 package com.twu.biblioteca.ui;
 
 import com.twu.biblioteca.book.BookController;
-import com.twu.biblioteca.Option;
 import com.twu.biblioteca.book.NoSuchBookAvailableException;
 import com.twu.biblioteca.book.NotAValidBookReturnException;
 import com.twu.biblioteca.movie.MovieController;
@@ -26,9 +25,9 @@ public class UserInterface {
         this.scanner = scanner;
         options = new ArrayList<>();
         options.add(new Option("List of books", "l"));
-        options.add(new Option("Check out a book", "c"));
-        options.add(new Option("Return a book", "r"));
         options.add(new Option("List of movies", "m"));
+        options.add(new Option("Check out an item", "c"));
+        options.add(new Option("Return an item", "r"));
         options.add(new Option("Quit the application", "q"));
 
         this.bookController = bookController;
