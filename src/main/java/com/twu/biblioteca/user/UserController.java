@@ -28,7 +28,7 @@ public class UserController {
 
 
     public boolean isUserLoggedIn(){
-        return false;
+        return currentUser != null;
     }
 
 
