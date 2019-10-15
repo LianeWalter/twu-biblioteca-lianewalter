@@ -1,8 +1,8 @@
-package com.twu.biblioteca.movie;
+package com.twu.biblioteca.library.movie;
 
-import com.twu.biblioteca.LibraryItem;
+import com.twu.biblioteca.library.Item;
 
-public class Movie extends LibraryItem {
+public class Movie extends Item {
 
     private String year;
     private String director;

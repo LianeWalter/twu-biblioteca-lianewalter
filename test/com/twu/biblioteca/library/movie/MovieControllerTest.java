@@ -1,4 +1,4 @@
-package com.twu.biblioteca.movie;
+package com.twu.biblioteca.library.movie;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -44,10 +44,10 @@ public class MovieControllerTest {
     @Test
     public void shouldCheckOutMovieCorrectly(){
        MovieController movieController = new MovieController();
-       movieController.checkOutMovie(mockMovies.get(0).getName());
+       movieController.checkOutMovie(mockMovies.get(0).getTitle());
 
        movieController.showAvailableMovieList();
-       assertThat(outContent.toString(),not((containsString(mockMovies.get(0).getName()))));
+       assertThat(outContent.toString(),not((containsString(mockMovies.get(0).getTitle()))));
     }
 
 

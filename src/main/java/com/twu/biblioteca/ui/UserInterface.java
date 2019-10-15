@@ -1,9 +1,9 @@
 package com.twu.biblioteca.ui;
 
-import com.twu.biblioteca.book.BookController;
-import com.twu.biblioteca.book.NoSuchBookAvailableException;
-import com.twu.biblioteca.book.NotAValidBookReturnException;
-import com.twu.biblioteca.movie.MovieController;
+import com.twu.biblioteca.library.book.BookController;
+import com.twu.biblioteca.library.book.NoSuchBookAvailableException;
+import com.twu.biblioteca.library.book.NotAValidBookReturnException;
+import com.twu.biblioteca.library.movie.MovieController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,6 +96,7 @@ public class UserInterface {
         run();
 
     }
+
 
     public void checkoutBook() {
         System.out.println("What is the title of the book you want to check out?");

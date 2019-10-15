@@ -1,10 +1,10 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.library;
 
-public class LibraryItem {
+public class Item {
     private String title;
     private boolean isCheckedOut;
 
-    public LibraryItem(String title) {
+    public Item(String title) {
         this.title = title;
 
         this.isCheckedOut = false;

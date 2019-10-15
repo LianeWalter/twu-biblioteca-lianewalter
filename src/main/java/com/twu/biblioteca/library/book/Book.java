@@ -1,8 +1,8 @@
-package com.twu.biblioteca.book;
+package com.twu.biblioteca.library.book;
 
-import com.twu.biblioteca.LibraryItem;
+import com.twu.biblioteca.library.Item;
 
-public class Book extends LibraryItem {
+public class Book extends Item {
 
     private String author;
     private String year;

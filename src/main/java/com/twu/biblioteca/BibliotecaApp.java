@@ -1,8 +1,8 @@
 package com.twu.biblioteca;
 
 
-import com.twu.biblioteca.book.BookController;
-import com.twu.biblioteca.movie.MovieController;
+import com.twu.biblioteca.library.book.BookController;
+import com.twu.biblioteca.library.movie.MovieController;
 import com.twu.biblioteca.ui.UserInterface;
 
 import java.util.Scanner;

@@ -1,9 +1,9 @@
 package com.twu.biblioteca;
 
 
-import com.twu.biblioteca.book.Book;
-import com.twu.biblioteca.book.BookController;
-import com.twu.biblioteca.book.NoSuchBookAvailableException;
+import com.twu.biblioteca.library.book.Book;
+import com.twu.biblioteca.library.book.BookController;
+import com.twu.biblioteca.library.book.NoSuchBookAvailableException;
 import org.junit.Before;
 import org.junit.Test;
 
