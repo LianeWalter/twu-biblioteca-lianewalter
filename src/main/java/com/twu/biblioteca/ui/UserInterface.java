@@ -4,6 +4,7 @@ import com.twu.biblioteca.library.book.BookController;
 import com.twu.biblioteca.library.book.NoSuchBookAvailableException;
 import com.twu.biblioteca.library.book.NotAValidBookReturnException;
 import com.twu.biblioteca.library.movie.MovieController;
+import com.twu.biblioteca.user.User;
 import com.twu.biblioteca.user.UserController;
 
 import java.util.ArrayList;
@@ -26,12 +27,12 @@ public class UserInterface {
         programRunning = true;
         this.scanner = scanner;
         options = new ArrayList<>();
-        options.add(new Option("List of books", "b"));
-        options.add(new Option("List of movies", "m"));
-        options.add(new Option("Check out an item", "c"));
-        options.add(new Option("Return an item", "r"));
-        options.add(new Option("Login", "l"));
-        options.add(new Option("Quit the application", "q"));
+        options.add(new Option("List of books", "b", false));
+        options.add(new Option("List of movies", "m", false));
+        options.add(new Option("Check out an item", "c",true));
+        options.add(new Option("Return an item", "r",false));
+        options.add(new Option("Login", "l",false));
+        options.add(new Option("Quit the application", "q", false));
 
         this.userController = userController;
         this.bookController = bookController;
@@ -114,15 +115,20 @@ public class UserInterface {
     }
 
     public void checkoutItem(){
-        System.out.println("Which item do you want to borrow? Press \"m\" for movies and \"b\" for books.");
-        String input = scanner.next();
-        switch(input){
-            case "m" :
-                checkoutMovie();
-                break;
-            case "b" :
-                checkoutBook();
-                break;
+        if (userController.isUserLoggedIn()) {
+            System.out.println("Which item do you want to borrow? Press \"m\" for movies and \"b\" for books.");
+            String input = scanner.next();
+            switch (input) {
+                case "m":
+                    checkoutMovie();
+                    break;
+                case "b":
+                    checkoutBook();
+                    break;
+            }
+        } else {
+            System.out.println("You must be logged in for this action.");
+
         }
     }
 

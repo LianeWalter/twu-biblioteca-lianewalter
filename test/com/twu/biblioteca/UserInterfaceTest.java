@@ -51,6 +51,7 @@ public class UserInterfaceTest {
     }
 
 
+
     @Test
     public void shouldSignalizeInvalidInput(){
         String input = "x\nq";
@@ -81,6 +82,23 @@ public class UserInterfaceTest {
         userInterface.run();
 
 
+    }
+
+    @Test
+    public void shouldNotShowCheckOutOptionIfNotLoggedIn(){
+        String input = "c\nq\n";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
+        UserInterface userInterface = new UserInterface(new UserController(), new BookController(), new MovieController() , scanner);
+
+        exit.expectSystemExit();
+        exit.checkAssertionAfterwards(() -> {
+                    assertThat(outContent.toString(), containsString("You must be logged in for this action."));
+                    assertThat(outContent.toString(), not(containsString("Check out an item")));
+                }
+        );
+
+
+        userInterface.run();
     }
 
     @Test

@@ -4,10 +4,13 @@ public class Option {
 
     private String description;
     private String command;
+    private boolean isLoggedInOnly;
 
-    public Option(String description, String command) {
+
+    public Option(String description, String command, boolean isLoggedInOnly) {
         this.description = description;
         this.command = command;
+        this.isLoggedInOnly = isLoggedInOnly;
     }
 
 
@@ -25,6 +28,15 @@ public class Option {
 
     public void setCommand(String command) {
         this.command = command;
+    }
+
+
+    public boolean isLoggedInOnly() {
+        return isLoggedInOnly;
+    }
+
+    public void setLoggedInOnly(boolean loggedInOnly) {
+        isLoggedInOnly = loggedInOnly;
     }
 
 
