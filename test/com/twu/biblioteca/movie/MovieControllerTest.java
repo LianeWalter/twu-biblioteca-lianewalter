@@ -36,7 +36,7 @@ public class MovieControllerTest {
     public void shouldShowMovieList(){
         MovieController movieController = new MovieController();
 
-        movieController.showMovieList();
+        movieController.showAvailableMovieList();
         assertThat(outContent.toString(), containsString("Frozen"));
     }
 
@@ -46,7 +46,7 @@ public class MovieControllerTest {
        MovieController movieController = new MovieController();
        movieController.checkOutMovie(mockMovies.get(0).getName());
 
-       movieController.showMovieList();
+       movieController.showAvailableMovieList();
        assertThat(outContent.toString(),not((containsString(mockMovies.get(0).getName()))));
     }
 

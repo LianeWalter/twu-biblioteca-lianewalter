@@ -51,7 +51,7 @@ public class UserInterface {
                 returnBook();
                 break;
             case "m":
-                movieController.showMovieList();
+                movieController.showAvailableMovieList();
                 break;
             default :
                 showErrorMessage();

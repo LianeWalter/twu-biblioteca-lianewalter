@@ -5,6 +5,7 @@ import com.twu.biblioteca.book.NoSuchBookAvailableException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MovieController {
 
@@ -18,9 +19,12 @@ public class MovieController {
         this.movies.add(new Movie("Moana", "2016","Ron Clements, John Musker", "unrated"));
     }
 
-    public void showMovieList(){
+    public void showAvailableMovieList(){
         System.out.println("List of movies: ");
-        this.movies.forEach(System.out::println);
+
+        List<Movie> availableMovies = movies.stream().filter(movie -> !movie.isCheckedOut()).collect(Collectors.toList());
+
+        availableMovies.forEach(System.out::println);
     }
 
 
