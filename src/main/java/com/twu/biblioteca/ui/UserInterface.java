@@ -126,6 +126,11 @@ public class UserInterface {
 
 
     public void checkoutMovie(){
+        System.out.println("What is the title of the movie you want to check out?");
+        String input = scanner.next();
+        movieController.checkOutMovie(input);
+        System.out.println("Thank you! Enjoy the movie\n");
+
 
     }
 
