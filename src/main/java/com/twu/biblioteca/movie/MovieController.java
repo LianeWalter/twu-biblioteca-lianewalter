@@ -16,7 +16,7 @@ public class MovieController {
     }
 
     public void showMovieList(){
-
+        System.out.println("List of movies: ");
         this.movies.forEach(System.out::println);
     }
 
