@@ -81,6 +81,23 @@ public class UserInterfaceTest {
 
 
     }
+
+    @Test
+    public void shouldShowLoginSuccessMessage() {
+        String input = "c\nlogin\n123-4567\nsecret\nq\n";
+        Scanner scanner = new Scanner(input).useDelimiter("\n");
+        UserInterface userInterface = new UserInterface(new UserController(), null, new MovieController() , scanner);
+
+        exit.expectSystemExit();
+        exit.checkAssertionAfterwards(() ->
+                assertThat(outContent.toString(), containsString("You're successfully logged in."))
+        );
+
+
+        userInterface.run();
+
+    }
+
     @Test
     public void shouldShowMovieCheckoutSuccessMessage() {
         String input = "c\nm\nFrozen\nq\n";
