@@ -1,29 +1,22 @@
 package com.twu.biblioteca.book;
 
-public class Book{
+import com.twu.biblioteca.LibraryItem;
 
-    private String title;
+public class Book extends LibraryItem {
+
     private String author;
     private String year;
 
-    private boolean isCheckedOut;
 
 
     public Book(String title, String author, String year) {
-        this.title = title;
+        super(title);
+
         this.author = author;
         this.year = year;
 
-        this.isCheckedOut = false;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
 
     public String getAuthor() {
@@ -42,19 +35,10 @@ public class Book{
         this.year = year;
     }
 
-
-    public boolean isCheckedOut() {
-        return isCheckedOut;
-    }
-
-    public void setCheckedOut(boolean checkedOut) {
-        isCheckedOut = checkedOut;
-    }
-
     @Override
     public String toString() {
 
-        String bookDescription = this.title +
+        String bookDescription = getTitle() +
                 ", Author: " +
                 this.author +
                 ", Year: " +
