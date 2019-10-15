@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.library.book.BookController;
 import com.twu.biblioteca.library.movie.MovieController;
 import com.twu.biblioteca.ui.UserInterface;
+import com.twu.biblioteca.user.User;
 import com.twu.biblioteca.user.UserController;
 import org.junit.Before;
 import org.junit.Rule;
@@ -20,13 +21,14 @@ import static org.junit.Assert.assertThat;
 public class UserInterfaceTest {
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
-
     private ByteArrayOutputStream outContent;
+    private User mockUser;
 
     @Before
     public void init(){
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
+        mockUser = new User("123-4567", "secret");
 
     }
 
@@ -69,11 +71,13 @@ public class UserInterfaceTest {
 
 
     @Test
-    public void shouldShowCheckoutOptions(){
+    public void shouldShowCheckoutOptionsIfLoggedIn(){
         String input = "c\nb\nKafka on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new UserController(), new BookController(), new MovieController() , scanner);
 
+        UserController userController = new UserController();
+        UserInterface userInterface = new UserInterface(userController, new BookController(), new MovieController() , scanner);
+        userController.login(mockUser.getLibraryNumber(), mockUser.getPassword());
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
                 assertThat(outContent.toString(), containsString("Which item do you want to borrow? Press \"m\" for movies and \"b\" for books."))
@@ -93,7 +97,6 @@ public class UserInterfaceTest {
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() -> {
                     assertThat(outContent.toString(), containsString("You must be logged in for this action."));
-                    assertThat(outContent.toString(), not(containsString("Check out an item")));
                 }
         );
 
@@ -121,7 +124,10 @@ public class UserInterfaceTest {
     public void shouldShowMovieCheckoutSuccessMessage() {
         String input = "c\nm\nFrozen\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new UserController(), null, new MovieController() , scanner);
+
+        UserController userController = new UserController();
+        UserInterface userInterface = new UserInterface(userController, new BookController(), new MovieController() , scanner);
+        userController.login(mockUser.getLibraryNumber(), mockUser.getPassword());
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -137,7 +143,10 @@ public class UserInterfaceTest {
     public void shouldShowBookCheckoutSuccessMessage() {
         String input = "c\nb\nKafka on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new UserController(), new BookController(), null , scanner);
+
+        UserController userController = new UserController();
+        UserInterface userInterface = new UserInterface(userController, new BookController(), new MovieController() , scanner);
+        userController.login(mockUser.getLibraryNumber(), mockUser.getPassword());
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -152,7 +161,10 @@ public class UserInterfaceTest {
     public void shouldShowBookCheckoutFailureMessageForAlreadyCheckedOutBook() {
         String input = "c\nb\nKafka on the Shore\nc\nb\nKafka on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new UserController(), new BookController(), null, scanner);
+
+        UserController userController = new UserController();
+        UserInterface userInterface = new UserInterface(userController, new BookController(), new MovieController() , scanner);
+        userController.login(mockUser.getLibraryNumber(), mockUser.getPassword());
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -168,7 +180,10 @@ public class UserInterfaceTest {
     public void shouldShowBookCheckoutFailureMessageForMisspellingTitle() {
         String input = "c\nb\nKafker on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new UserController(), new BookController(), null, scanner);
+
+        UserController userController = new UserController();
+        UserInterface userInterface = new UserInterface(userController, new BookController(), new MovieController() , scanner);
+        userController.login(mockUser.getLibraryNumber(), mockUser.getPassword());
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -184,7 +199,10 @@ public class UserInterfaceTest {
     public void shouldReturnBookSuccessfully() {
         String input = "c\nb\nKafka on the Shore\nr\nKafka on the Shore\nb\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new UserController(), new BookController(), null, scanner);
+
+        UserController userController = new UserController();
+        UserInterface userInterface = new UserInterface(userController, new BookController(), new MovieController() , scanner);
+        userController.login(mockUser.getLibraryNumber(), mockUser.getPassword());
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -200,7 +218,10 @@ public class UserInterfaceTest {
     public void shouldShowBookReturnFailureMessageForUnknownBook() {
         String input = "r\nWinnie-the-Pooh\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new UserController(), new BookController(), null, scanner);
+
+        UserController userController = new UserController();
+        UserInterface userInterface = new UserInterface(userController, new BookController(), new MovieController() , scanner);
+        userController.login(mockUser.getLibraryNumber(), mockUser.getPassword());
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -216,7 +237,10 @@ public class UserInterfaceTest {
     public void shouldShowBookReturnFailureMessageForMisspellingTitle() {
         String input = "c\nb\nKafka on the Shore\nr\nKafker on the Shore\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new UserController(), new BookController(), null , scanner);
+
+        UserController userController = new UserController();
+        UserInterface userInterface = new UserInterface(userController, new BookController(), new MovieController() , scanner);
+        userController.login(mockUser.getLibraryNumber(), mockUser.getPassword());
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
@@ -232,7 +256,9 @@ public class UserInterfaceTest {
     public void shouldNavigateToMovieListSuccessfully(){
         String input = "m\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
-        UserInterface userInterface = new UserInterface(new UserController(), null, new MovieController(), scanner);
+
+        UserController userController = new UserController();
+        UserInterface userInterface = new UserInterface(userController, new BookController(), new MovieController() , scanner);
 
         exit.expectSystemExit();
         exit.checkAssertionAfterwards(() ->
