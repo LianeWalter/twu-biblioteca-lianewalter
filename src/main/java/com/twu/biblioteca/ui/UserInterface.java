@@ -30,7 +30,7 @@ public class UserInterface {
         options.add(new Option("List of books", "b", false));
         options.add(new Option("List of movies", "m", false));
         options.add(new Option("Check out an item", "c",true));
-        options.add(new Option("Return an item", "r",false));
+        options.add(new Option("Return an item", "r",true));
         options.add(new Option("Login", "l",false));
         options.add(new Option("Quit the application", "q", false));
 
@@ -69,7 +69,11 @@ public class UserInterface {
 
     public void showOptions(){
         System.out.println("Main Menu \n ");
-        options.forEach(System.out::println);
+        if(userController.isUserLoggedIn()) {
+            options.forEach(System.out::println);
+        } else {
+            options.stream().filter(option -> !option.isLoggedInOnly()).forEach(System.out::println);
+        }
     }
 
     public void showErrorMessage(){
@@ -156,15 +160,19 @@ public class UserInterface {
 
     }
 
-    public void returnBook(){
-        System.out.println("What is the title of the book you want to return?");
-        String input = scanner.next();
-        try {
-            bookController.returnBook(input);
-            System.out.println("Thank you for returning the book");
-        } catch (NotAValidBookReturnException e) {
-            System.out.println("That is not a valid book to return.");
-        }
+    public void returnBook() {
+        if (userController.isUserLoggedIn()) {
+            System.out.println("What is the title of the book you want to return?");
+            String input = scanner.next();
+            try {
+                bookController.returnBook(input);
+                System.out.println("Thank you for returning the book");
+            } catch (NotAValidBookReturnException e) {
+                System.out.println("That is not a valid book to return.");
+            }
 
+        } else {
+            System.out.println("You must be logged in for this action.");
+        }
     }
 }
