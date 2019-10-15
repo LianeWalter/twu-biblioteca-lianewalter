@@ -16,6 +16,7 @@ public class UserInterface {
     private Scanner scanner;
     private boolean programRunning;
 
+    private UserController userController;
     private BookController bookController;
     private MovieController movieController;
 
@@ -25,12 +26,14 @@ public class UserInterface {
         programRunning = true;
         this.scanner = scanner;
         options = new ArrayList<>();
-        options.add(new Option("List of books", "l"));
+        options.add(new Option("List of books", "b"));
         options.add(new Option("List of movies", "m"));
         options.add(new Option("Check out an item", "c"));
         options.add(new Option("Return an item", "r"));
+        options.add(new Option("Login", "l"));
         options.add(new Option("Quit the application", "q"));
 
+        this.userController = userController;
         this.bookController = bookController;
         this.movieController = movieController;
 
@@ -38,7 +41,7 @@ public class UserInterface {
 
     public  void selectOption(String option){
         switch (option) {
-            case "l" :
+            case "b" :
                 bookController.showBookList();
                 break;
             case "q" :
@@ -52,6 +55,9 @@ public class UserInterface {
                 break;
             case "m":
                 movieController.showAvailableMovieList();
+                break;
+            case "l":
+                login();
                 break;
             default :
                 showErrorMessage();
@@ -67,15 +73,6 @@ public class UserInterface {
 
     public void showErrorMessage(){
         System.out.println("Please select a valid option! \n");
-    }
-
-
-    private String readUserInput(){
-        if(scanner.hasNext()){
-            return scanner.nextLine();
-        } else{
-            return "";
-        }
     }
 
 
@@ -95,6 +92,24 @@ public class UserInterface {
         selectOption(userInput);
 
         run();
+
+    }
+
+
+    public void login(){
+        System.out.println("Please enter your library number. The format is \"xxx-xxxx\": ");
+        String libraryNumber = scanner.next();
+
+        System.out.println("Please enter your password: ");
+        String password = scanner.next();
+
+        boolean isLoginSuccessful = userController.login(libraryNumber, password);
+
+        if(isLoginSuccessful){
+            System.out.println("You're successfully logged in.");
+        } else{
+            System.out.println("Please try again.");
+        }
 
     }
 

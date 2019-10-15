@@ -85,7 +85,7 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldShowLoginSuccessMessage() {
-        String input = "c\nlogin\n123-4567\nsecret\nq\n";
+        String input = "l\n123-4567\nsecret\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
         UserInterface userInterface = new UserInterface(new UserController(), null, new MovieController() , scanner);
 
@@ -164,7 +164,7 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldReturnBookSuccessfully() {
-        String input = "c\nb\nKafka on the Shore\nr\nKafka on the Shore\nl\nq\n";
+        String input = "c\nb\nKafka on the Shore\nr\nKafka on the Shore\nb\nq\n";
         Scanner scanner = new Scanner(input).useDelimiter("\n");
         UserInterface userInterface = new UserInterface(new UserController(), new BookController(), null, scanner);
 
