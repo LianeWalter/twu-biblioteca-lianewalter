@@ -1,0 +1,1 @@
+select member.name from checkout_item, book, member where checkout_item.member_id = member.id and checkout_item.book_id = book.id and book.title like 'The Hobbit';
